@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:mvvm/core/constants/string.dart';
 
-import 'package:mvvm/ui/screens/auth/login_screen.dart';
+import 'package:mvvm/ui/screens/auth/creat_account_screen/creataccount_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

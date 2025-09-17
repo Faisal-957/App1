@@ -11,7 +11,7 @@ import 'package:mvvm/ui/custom_widget/buttons/buttons.dart';
 
 import 'package:mvvm/ui/custom_widget/buttons/social_button.dart';
 
-import 'package:mvvm/ui/screens/auth/login_viewmodel.dart';
+import 'package:mvvm/ui/screens/auth/creat_account_screen/lcreataccount_viewmodel.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
