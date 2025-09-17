@@ -9,6 +9,7 @@ import 'package:mvvm/ui/custom_widget/buttons/social_button.dart';
 import 'package:mvvm/ui/screens/auth/creat_account_screen/lcreataccount_viewmodel.dart';
 import 'package:provider/provider.dart';
 
+// ignore: use_key_in_widget_constructors
 class LoginScreen1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

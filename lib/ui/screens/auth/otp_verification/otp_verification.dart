@@ -69,8 +69,8 @@ class OtpVerification extends StatelessWidget {
             CustomButton(
               text: "Verify",
               onTap: () {},
-              boxColor: Colors.black,
-              textColor: greenColor,
+              boxColor: greenColor,
+              textColor: whiteColor,
             ),
           ],
         ),

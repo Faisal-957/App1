@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/route_manager.dart';
 import 'package:mvvm/core/constants/colors.dart';
-import 'package:mvvm/ui/screens/auth/otp_verification/oppp.dart';
+import 'package:mvvm/ui/screens/auth/onbord_screen/onboarding2.dart';
 import 'package:mvvm/ui/screens/auth/otp_verification/otp_verification.dart';
 
 void main() {
