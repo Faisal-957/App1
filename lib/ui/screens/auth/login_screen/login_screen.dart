@@ -32,7 +32,7 @@ class LoginScreen1 extends StatelessWidget {
                   Image.asset("$staticAssets/app_logo.png", scale: 6),
                   30.verticalSpace,
                   Text("Welcome Back", style: style30),
-                  Text("Login to Continue!", style: style20),
+                  Text("Login to Continue!", style: style24),
                   50.verticalSpace,
                   TextFormField(
                     style: style16,
