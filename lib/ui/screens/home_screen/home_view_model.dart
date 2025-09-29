@@ -25,7 +25,7 @@ class HomeViewModel extends BaseViewModel {
     "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
   ];
 
-  videos() async {
+  void videos() async {
     for (var url in videoslist) {
       videoController = VideoPlayerController.networkUrl(Uri.parse(url));
       await videoController!.initialize();

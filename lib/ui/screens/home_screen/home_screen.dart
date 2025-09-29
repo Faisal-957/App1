@@ -1,7 +1,6 @@
 // ignore_for_file: use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
-import 'package:mvvm/core/constants/text_style.dart';
 
 import 'package:mvvm/ui/screens/home_screen/home_view_model.dart';
 import 'package:provider/provider.dart';
@@ -17,36 +16,21 @@ class MyHomePage extends StatelessWidget {
           ///
           /// Start Body
           ///
-          body: PageView.builder(
-            scrollDirection: Axis.vertical,
-            controller: model.pageController,
-            itemCount: model.videoslist.length,
-            itemBuilder: (context, index) {
-              return SizedBox.expand(
-                child: FittedBox(
-                  fit: BoxFit.cover,
-                  child: SizedBox(
-                    width: model.videoController!.value.size.width,
-                    height: model.videoController!.value.size.height,
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        VideoPlayer(model.videoController!),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text("AWAIS KHAN", style: style30),
-                            Text("AWAIS KHAN", style: style30),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
+          body: model.videoController == null
+              ? Center(child: CircularProgressIndicator())
+              : PageView.builder(
+                  scrollDirection: Axis.vertical,
+                  controller: model.pageController,
+                  itemCount: model.videoslist.length,
+                  itemBuilder: (context, index) {
+                    return SizedBox.expand(
+                      child: AspectRatio(
+                        aspectRatio: model.videoController!.value.aspectRatio,
+                        child: VideoPlayer(model.videoController!),
+                      ),
+                    );
+                  },
                 ),
-              );
-            },
-          ),
         ),
       ),
     );
