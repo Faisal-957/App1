@@ -24,3 +24,36 @@ final authFieldDecoration = InputDecoration(
     borderSide: BorderSide(color: whiteColor, width: 1),
   ),
 );
+
+final intrestsearch = InputDecoration(
+  prefixIcon: Icon(Icons.search),
+
+  hintText: "Search",
+  filled: true,
+  fillColor: Color(0xff23262C),
+
+  border: OutlineInputBorder(
+    borderSide: BorderSide(width: 1, color: lightBlack),
+    borderRadius: BorderRadius.circular(10),
+  ),
+  errorBorder: OutlineInputBorder(
+    borderSide: BorderSide(color: lightBlack, width: 1),
+    borderRadius: BorderRadius.circular(10),
+  ),
+  enabledBorder: OutlineInputBorder(
+    borderSide: BorderSide(color: lightBlack, width: 1),
+    borderRadius: BorderRadius.circular(10),
+  ),
+  disabledBorder: OutlineInputBorder(
+    borderSide: BorderSide(color: lightBlack, width: 1),
+    borderRadius: BorderRadius.circular(10),
+  ),
+  focusedErrorBorder: OutlineInputBorder(
+    borderSide: BorderSide(color: lightBlack, width: 1),
+    borderRadius: BorderRadius.circular(10),
+  ),
+  focusedBorder: OutlineInputBorder(
+    borderSide: BorderSide(color: lightBlack, width: 1),
+    borderRadius: BorderRadius.circular(10),
+  ),
+);
