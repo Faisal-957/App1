@@ -42,8 +42,6 @@ class Selectintrest extends StatelessWidget {
                   30.verticalSpace,
                   Text("Select Interests", style: style24),
                   Wrap(
-                    alignment: WrapAlignment.spaceAround,
-
                     children: List.generate(
                       model.intrest.length,
                       (index) => IntrestButton(
