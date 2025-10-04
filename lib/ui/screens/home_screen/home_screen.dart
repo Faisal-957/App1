@@ -1,158 +1,278 @@
-// ignore_for_file: use_key_in_widget_constructors
-
 import 'package:flutter/material.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 
+import 'package:mvvm/core/constants/colors.dart';
+import 'package:mvvm/core/constants/string.dart';
+import 'package:mvvm/core/constants/text_style.dart';
+import 'package:mvvm/ui/buttons/buttons.dart';
 import 'package:mvvm/ui/screens/home_screen/home_view_model.dart';
+
 import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
 
-class MyHomePage extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final ZoomDrawerController _drawerController = ZoomDrawerController();
+
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (BuildContext context) => HomeViewModel(),
-      child: Consumer<HomeViewModel>(
-        builder: (context, model, child) => Scaffold(
-          ///
-          /// Start Body
-          ///
-          body: model.videoController == null
-              ? Center(child: CircularProgressIndicator())
-              : PageView.builder(
-                  scrollDirection: Axis.vertical,
-                  controller: model.pageController,
-                  itemCount: model.videoslist.length,
-                  itemBuilder: (context, index) {
-                    return SizedBox.expand(
-                      child: AspectRatio(
-                        aspectRatio: model.videoController!.value.aspectRatio,
-                        child: VideoPlayer(model.videoController!),
-                      ),
-                    );
-                  },
+    return ZoomDrawer(
+      menuBackgroundColor: lightBlack,
+      controller: _drawerController,
+      style: DrawerStyle.defaultStyle,
+      borderRadius: 24.0,
+      showShadow: true,
+      angle: 1,
+      slideWidth: MediaQuery.of(context).size.width * 0.7,
+      drawerShadowsBackgroundColor: whiteColor,
+      isRtl: true,
+      //shrinkMainScreen: true,
+      mainScreenScale: -0.0,
+
+      //mainScreenOverlayColor: greenColor,
+      openCurve: Curves.fastOutSlowIn,
+      closeCurve: Curves.bounceIn,
+
+      /// ✅ Drawer Menu
+      menuScreen: Scaffold(
+        backgroundColor: Colors.black,
+        body: ListView(
+          padding: const EdgeInsets.all(20),
+          children: [
+            CircleAvatar(
+              radius: 70,
+              backgroundImage: AssetImage("$iconsAssets/salena.png"),
+            ),
+            Text("Selena Grande", style: style24),
+            Text(
+              "selenagrande@mail.com",
+              style: style24.copyWith(color: greyColor),
+            ),
+            const SizedBox(height: 20),
+            ...List.generate(
+              10,
+              (index) => ListTile(
+                leading: CircleAvatar(
+                  radius: 20,
+                  child: Image.asset("$iconsAssets/email.png", height: 20),
                 ),
+                title: Text("My Profile", style: style16),
+                trailing: Image.asset("$iconsAssets/farrow.png", height: 20),
+              ),
+            ),
+          ],
+        ),
+      ),
+
+      /// ✅ Main TikTok-style screen
+      mainScreen: ChangeNotifierProvider(
+        create: (_) => SavoKidsScreenViewModel(),
+        child: Consumer<SavoKidsScreenViewModel>(
+          builder: (context, value, _) {
+            return Scaffold(
+              backgroundColor: Colors.black,
+              body: Stack(
+                children: [
+                  /// ✅ Background Video
+                  Positioned.fill(
+                    child: value.isVideoInitialized
+                        ? FittedBox(
+                            fit: BoxFit.cover,
+                            child: SizedBox(
+                              width: value.videoController.value.size.width,
+                              height: value.videoController.value.size.height,
+                              child: VideoPlayer(value.videoController),
+                            ),
+                          )
+                        : const Center(child: CircularProgressIndicator()),
+                  ),
+
+                  Column(
+                    children: [
+                      /// ✅ Header with drawer toggle
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 20,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Image.asset(
+                              "$staticAssets/app_logo.png",
+                              height: 40,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Image.asset(
+                                  "$iconsAssets/searchicon.png",
+                                  height: 28,
+                                ),
+                                const SizedBox(width: 12),
+
+                                /// ✅ Toggle ZoomDrawer
+                                GestureDetector(
+                                  onTap: () {
+                                    _drawerController.toggle?.call();
+                                  },
+                                  child: Image.asset(
+                                    "$iconsAssets/drawericon.png",
+                                    height: 28,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      /// ✅ Tabs
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: CustomButton(
+                                text: "SAVO Kids",
+                                onTap: () => value.tabSelected(0),
+                                boxColor: value.selectedTabIndex == 0
+                                    ? greenColor
+                                    : whiteColor,
+                                textColor: value.selectedTabIndex == 0
+                                    ? whiteColor
+                                    : blackColor,
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: CustomButton(
+                                text: "SAVO Senior",
+                                onTap: () => value.tabSelected(1),
+                                boxColor: value.selectedTabIndex == 1
+                                    ? greenColor
+                                    : whiteColor,
+                                textColor: value.selectedTabIndex == 1
+                                    ? whiteColor
+                                    : blackColor,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      const SizedBox(height: 20),
+
+                      /// ✅ Video bottom overlays
+                      Expanded(
+                        child: Stack(
+                          children: [
+                            Align(
+                              alignment: Alignment.bottomLeft,
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 16,
+                                  bottom: 40,
+                                ),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "529 College Savings Plan vs. Annuities",
+                                      style: style12.copyWith(
+                                        color: whiteColor,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 6),
+                                    const Text(
+                                      "What plan will work best for your child’s tuition.",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    const SizedBox(height: 6),
+                                    const Text(
+                                      "Jonathon Doe · 3 days ago",
+                                      style: TextStyle(color: Colors.grey),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.bottomRight,
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                  right: 16,
+                                  bottom: 40,
+                                ),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    const CircleAvatar(
+                                      radius: 30,
+                                      backgroundImage: AssetImage(
+                                        "$staticAssets/avatar.png",
+                                      ),
+                                    ),
+                                    const SizedBox(height: 16),
+                                    GestureDetector(
+                                      onTap: value.like,
+                                      child: Icon(
+                                        Icons.favorite,
+                                        color: value.isLiked
+                                            ? Colors.red
+                                            : whiteColor,
+                                        size: 32,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Text(
+                                      "12k",
+                                      style: style12.copyWith(
+                                        color: whiteColor,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 16),
+                                    const Icon(
+                                      Icons.comment,
+                                      color: whiteColor,
+                                      size: 32,
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Text(
+                                      "786",
+                                      style: style12.copyWith(
+                                        color: whiteColor,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 16),
+                                    const Icon(
+                                      Icons.share,
+                                      color: whiteColor,
+                                      size: 32,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            );
+          },
         ),
       ),
     );
   }
 }
-
-// import 'package:flutter/material.dart';
-// import 'package:video_player/video_player.dart';
-
-// class TikTokVideoPage extends StatefulWidget {
-//   @override
-//   _TikTokVideoPageState createState() => _TikTokVideoPageState();
-// }
-
-// class _TikTokVideoPageState extends State<TikTokVideoPage> {
-//   final PageController _pageController = PageController();
-//   final List<String> videos = [
-//     "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
-//     "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
-//     "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
-//   ];
-
-//   int currentIndex = 0;
-//   VideoPlayerController? _controller;
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     _initializeVideo(currentIndex);
-//   }
-
-//   void _initializeVideo(int index) {
-//     _controller?.dispose();
-//     // ignore: deprecated_member_use
-//     _controller = VideoPlayerController.network(
-//       "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
-//     )..initialize().then((_) {
-//         setState(() {});
-//         _controller!.play();
-//         _controller!.setLooping(true);
-//       });
-//   }
-
-//   @override
-//   void dispose() {
-//     _controller?.dispose();
-//     _pageController.dispose();
-//     super.dispose();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: PageView.builder(
-//         scrollDirection: Axis.vertical,
-//         controller: _pageController,
-//         itemCount: videos.length,
-//         onPageChanged: (index) {
-//           setState(() => currentIndex = index);
-//           _initializeVideo(index);
-//         },
-//         itemBuilder: (context, index) {
-//           return Stack(
-//             children: [
-//               // Video Player
-//               Center(
-//                 child: _controller != null && _controller!.value.isInitialized
-//                     ? SizedBox.expand(
-//                         // full screen
-//                         child: FittedBox(
-//                           fit: BoxFit.cover, // zoom & crop like TikTok
-//                           child: SizedBox(
-//                             width: _controller!.value.size.width,
-//                             height: _controller!.value.size.height,
-//                             child: VideoPlayer(_controller!),
-//                           ),
-//                         ),
-//                       )
-//                     : const Center(child: CircularProgressIndicator()),
-//               ),
-
-//               // Overlay (Like, Comment, Share)
-//               const Positioned(
-//                 right: 16,
-//                 bottom: 100,
-//                 child: Column(
-//                   mainAxisAlignment: MainAxisAlignment.end,
-//                   children: [
-//                     Icon(Icons.favorite, color: Colors.red, size: 40),
-//                     SizedBox(height: 20),
-//                     Icon(Icons.comment, color: Colors.white, size: 40),
-//                     SizedBox(height: 20),
-//                     Icon(Icons.share, color: Colors.white, size: 40),
-//                   ],
-//                 ),
-//               ),
-
-//               // Bottom info (username + caption + music)
-//               Positioned(
-//                 left: 16,
-//                 bottom: 20,
-//                 child: Column(
-//                   crossAxisAlignment: CrossAxisAlignment.start,
-//                   children: [
-//                     Text("@username",
-//                         style: TextStyle(color: Colors.white, fontSize: 16)),
-//                     Text("This is a TikTok style caption...",
-//                         style: TextStyle(color: Colors.white)),
-//                     Row(
-//                       children: [
-//                         Icon(Icons.music_note, color: Colors.white, size: 16),
-//                         Text(" Original Sound",
-//                             style: TextStyle(color: Colors.white)),
-//                       ],
-//                     ),
-//                   ],
-//                 ),
-//               ),
-//             ],
-//           );
-//         },
-//       ),
-//     );
-//   }
-// }

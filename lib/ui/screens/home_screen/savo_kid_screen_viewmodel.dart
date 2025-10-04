@@ -12,7 +12,6 @@ class SavoKidsScreenViewModel extends ChangeNotifier {
     initVideo();
   }
 
-  /// Initialize video from URL
   Future<void> initVideo() async {
     videoController = VideoPlayerController.networkUrl(
       Uri.parse(
@@ -22,7 +21,7 @@ class SavoKidsScreenViewModel extends ChangeNotifier {
 
     await videoController.initialize();
     videoController.setLooping(true);
-    videoController.pause();
+    videoController.play();
 
     isVideoInitialized = true;
     notifyListeners();

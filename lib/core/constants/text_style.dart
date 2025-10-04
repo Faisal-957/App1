@@ -24,3 +24,8 @@ TextStyle style16 = GoogleFonts.mulish(
   color: whiteColor,
   fontWeight: FontWeight.bold,
 );
+TextStyle style12 = GoogleFonts.mulish(
+  fontSize: 12,
+  color: whiteColor,
+  fontWeight: FontWeight.w400,
+);

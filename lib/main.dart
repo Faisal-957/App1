@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/route_manager.dart';
 import 'package:mvvm/core/constants/colors.dart';
-import 'package:mvvm/ui/screens/Select%20Intrest/Select_Intrest.dart';
-import 'package:mvvm/ui/screens/auth/subscription/plans/savo_subscription.dart';
+import 'package:mvvm/ui/screens/courses/courses.dart';
+import 'package:mvvm/ui/screens/home_screen/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: SavoSubscription(),
+        home: Courses(),
       ),
     );
   }
