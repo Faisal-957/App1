@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mvvm/core/constants/colors.dart';
 import 'package:mvvm/core/constants/string.dart';
-import 'package:mvvm/ui/screens/auth/creat_account_screen/creataccount_screen.dart';
+
+import 'package:mvvm/ui/screens/courses/courses.dart';
 import 'package:mvvm/ui/screens/root%20_screen/rootscreen_view_model.dart';
 
 import 'package:provider/provider.dart';
@@ -16,13 +17,7 @@ class RootScreen extends StatelessWidget {
       child: Consumer<RootScreenViewModel>(
         // ignore: non_constant_identifier_names
         builder: (context, model, _) {
-          final List<Widget> screens = [
-            LoginScreen(),
-            LoginScreen(),
-            LoginScreen(),
-            LoginScreen(),
-            LoginScreen(),
-          ];
+          final List<Widget> screens = [Courses()];
 
           return Scaffold(
             body: screens[model.selectedIndex],

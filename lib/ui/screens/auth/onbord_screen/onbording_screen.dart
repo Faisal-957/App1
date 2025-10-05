@@ -63,7 +63,7 @@ class OnbaordingScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 120.0, left: 30),
                 child: SmoothPageIndicator(
                   controller: value.pageController, // PageController
-                  count: value.items.length ?? 0,
+                  count: value.items.length,
                   effect: const WormEffect(
                     dotHeight: 8,
                     dotWidth: 8,

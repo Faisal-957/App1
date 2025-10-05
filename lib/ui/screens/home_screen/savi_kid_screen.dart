@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
 
 class SavoKidsScreen extends StatelessWidget {
-  SavoKidsScreen({super.key});
+  const SavoKidsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
