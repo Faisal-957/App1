@@ -12,7 +12,16 @@ import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  List<Drawerlist> drawer2 = [
+    Drawerlist(pic: "$iconsAssets/frame.png", text: "My Profile"),
+    Drawerlist(pic: "$iconsAssets/vedioo.png", text: "Videos"),
+    Drawerlist(pic: "$iconsAssets/lock.png", text: "Safety Deposit"),
+    Drawerlist(pic: "$iconsAssets/searchd.png", text: "Discover"),
+    Drawerlist(pic: "$iconsAssets/rvault.png", text: "Vault"),
+    Drawerlist(pic: "$iconsAssets/message.png", text: "Help"),
+    Drawerlist(pic: "$iconsAssets/channel.png", text: "Channels"),
+  ];
+  HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -56,17 +65,13 @@ class _HomeScreenState extends State<HomeScreen> {
               style: style24.copyWith(color: greyColor),
             ),
             const SizedBox(height: 20),
-            ...List.generate(
-              10,
-              (index) => ListTile(
-                leading: CircleAvatar(
-                  backgroundColor: lightBlack,
-                  radius: 20,
-                  child: Image.asset("$iconsAssets/email.png", height: 20),
-                ),
-                title: Text("My Profile", style: style16),
-                trailing: Image.asset("$iconsAssets/farrow.png", height: 20),
-              ),
+            ListView.builder(
+              shrinkWrap: true, // important to prevent unbounded height error
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: widget.drawer2.length,
+              itemBuilder: (context, index) {
+                return widget.drawer2[index];
+              },
             ),
           ],
         ),
