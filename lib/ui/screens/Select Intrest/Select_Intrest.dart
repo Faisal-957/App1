@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:mvvm/core/constants/auth_field_decoration.dart';
 import 'package:mvvm/core/constants/colors.dart';
 import 'package:mvvm/core/constants/string.dart';
@@ -7,6 +8,7 @@ import 'package:mvvm/core/constants/text_style.dart';
 import 'package:mvvm/ui/custom_widget/buttons/buttons.dart';
 import 'package:mvvm/ui/custom_widget/buttons/intrest_button.dart';
 import 'package:mvvm/ui/screens/Select%20Intrest/Select_Intrest_viewmodel.dart';
+import 'package:mvvm/ui/screens/home_screen/home_screen.dart';
 import 'package:provider/provider.dart';
 
 class Selectintrest extends StatelessWidget {
@@ -55,7 +57,9 @@ class Selectintrest extends StatelessWidget {
                   ),
                   30.verticalSpace,
                   CustomButton(
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(HomeScreen());
+                    },
                     text: "Continue",
                     boxColor: greenColor,
                   ),

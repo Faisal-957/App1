@@ -63,15 +63,18 @@ class ProfileScree extends StatelessWidget {
                 20.verticalSpace,
                 Image.asset("$iconsAssets/line.png"),
                 20.verticalSpace,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Recent", style: style24),
-                    Text(
-                      "View All,",
-                      style: style16.copyWith(color: greenColor),
-                    ),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Recent", style: style24),
+                      Text(
+                        "View All,",
+                        style: style16.copyWith(color: greenColor),
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: 250, // list ki height
@@ -91,9 +94,13 @@ class ProfileScree extends StatelessWidget {
                     },
                   ),
                 ),
-                40.verticalSpace,
+                20.verticalSpace,
                 Image.asset("$iconsAssets/line.png"),
-                40.verticalSpace,
+                20.verticalSpace,
+                Tilelsit(imgh: "$iconsAssets/vedio.png", text: "Your Videos"),
+                Tilelsit(imgh: "$iconsAssets/clock.png", text: "Watch Later"),
+                Tilelsit(imgh: "$iconsAssets/heart.png", text: "Liked Videos"),
+                Tilelsit(imgh: "$iconsAssets/music.png", text: "Playlist"),
               ],
             ),
           ),

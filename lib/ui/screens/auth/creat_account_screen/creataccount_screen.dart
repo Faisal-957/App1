@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/route_manager.dart';
 
 import 'package:mvvm/core/constants/auth_field_decoration.dart';
 import 'package:mvvm/core/constants/colors.dart';
@@ -12,6 +13,7 @@ import 'package:mvvm/ui/custom_widget/buttons/buttons.dart';
 import 'package:mvvm/ui/custom_widget/buttons/social_button.dart';
 
 import 'package:mvvm/ui/screens/auth/creat_account_screen/lcreataccount_viewmodel.dart';
+import 'package:mvvm/ui/screens/auth/login_screen/login_screen.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -29,101 +31,132 @@ class LoginScreen extends StatelessWidget {
           body: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(16),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: Stack(
                 children: [
-                  Image.asset("$staticAssets/app_logo.png", scale: 6),
-                  30.verticalSpace,
-                  Text("Create Account", style: style30),
-                  50.verticalSpace,
-                  TextFormField(
-                    style: style16,
-                    decoration: authFieldDecoration.copyWith(
-                      labelText: "Full Name",
-                      suffixIcon: Image.asset(
-                        "$iconsAssets/tick-circle.png",
-                        scale: 4,
-                      ),
-                      prefixIcon: Image.asset(
-                        "$iconsAssets/user.png",
-                        scale: 4,
-                      ),
+                  Positioned(
+                    left: 350,
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.to(LoginScreen1());
+                      },
+                      child: Text("Skip", style: style16),
                     ),
                   ),
-                  30.verticalSpace,
-
-                  ///
-                  /// Email
-                  ///
-                  TextFormField(
-                    style: style16,
-                    decoration: authFieldDecoration.copyWith(
-                      labelText: "Email",
-                      suffixIcon: Image.asset(
-                        "$iconsAssets/tick-circle.png",
-                        scale: 4,
-                      ),
-                      prefixIcon: Image.asset(
-                        "$iconsAssets/email.png",
-                        scale: 4,
-                      ),
-                    ),
-                  ),
-                  30.verticalSpace,
-
-                  ///
-                  /// Password
-                  ///
-                  TextFormField(
-                    style: style16,
-                    obscureText: model.isSelect,
-                    decoration: authFieldDecoration.copyWith(
-                      labelText: "Password",
-                      suffixIcon: GestureDetector(
-                        onTap: () {
-                          model.onClick();
-                        },
-                        child: Icon(
-                          model.isSelect
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                          color: greyColor,
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Image.asset("$staticAssets/app_logo.png", scale: 6),
+                      30.verticalSpace,
+                      Text("Create Account", style: style30),
+                      50.verticalSpace,
+                      TextFormField(
+                        style: style16,
+                        decoration: authFieldDecoration.copyWith(
+                          labelText: "Full Name",
+                          suffixIcon: Image.asset(
+                            "$iconsAssets/tick-circle.png",
+                            scale: 4,
+                          ),
+                          prefixIcon: Image.asset(
+                            "$iconsAssets/user.png",
+                            scale: 4,
+                          ),
                         ),
                       ),
-                      prefixIcon: Image.asset(
-                        "$iconsAssets/email.png",
-                        scale: 4,
+                      30.verticalSpace,
+
+                      ///
+                      /// Email
+                      ///
+                      TextFormField(
+                        style: style16,
+                        decoration: authFieldDecoration.copyWith(
+                          labelText: "Email",
+                          suffixIcon: Image.asset(
+                            "$iconsAssets/tick-circle.png",
+                            scale: 4,
+                          ),
+                          prefixIcon: Image.asset(
+                            "$iconsAssets/email.png",
+                            scale: 4,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  30.verticalSpace,
+                      30.verticalSpace,
 
-                  ///
-                  /// Custom Button
-                  ///
-                  CustomButton(
-                    text: "Create New Account",
-                    onTap: () {},
-                    boxColor: Colors.black,
-                    textColor: greenColor,
-                  ),
-                  30.verticalSpace,
+                      ///
+                      /// Password
+                      ///
+                      TextFormField(
+                        style: style16,
+                        obscureText: model.isSelect,
+                        decoration: authFieldDecoration.copyWith(
+                          labelText: "Password",
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              model.onClick();
+                            },
+                            child: Icon(
+                              model.isSelect
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              color: greyColor,
+                            ),
+                          ),
+                          prefixIcon: Image.asset(
+                            "$iconsAssets/email.png",
+                            scale: 4,
+                          ),
+                        ),
+                      ),
+                      30.verticalSpace,
 
-                  ///
-                  /// Social Button
-                  ///
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SocailButton(onTap: () {}, icon: Icon(Icons.apple)),
-                      20.horizontalSpace,
-                      SocailButton(onTap: () {}, icon: Icon(Icons.facebook)),
-                      20.horizontalSpace,
-                      SocailButton(
+                      ///
+                      /// Custom Button
+                      ///
+                      CustomButton(
+                        text: "Create New Account",
                         onTap: () {},
-                        icon: Icon(Icons.linked_camera_outlined),
+                        boxColor: greenColor,
+                        textColor: whiteColor,
+                      ),
+                      30.verticalSpace,
+
+                      ///
+                      /// Social Button
+                      ///
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SocailButton(onTap: () {}, icon: Icon(Icons.apple)),
+                          20.horizontalSpace,
+                          SocailButton(
+                            onTap: () {},
+                            icon: Icon(Icons.facebook),
+                          ),
+                          20.horizontalSpace,
+                          SocailButton(
+                            onTap: () {},
+                            icon: Icon(Icons.linked_camera_outlined),
+                          ),
+                        ],
+                      ),
+                      20.verticalSpace,
+                      Center(
+                        child: GestureDetector(
+                          onTap: () {
+                            Get.to(LoginScreen1());
+                          },
+                          child: Text(
+                            "Already Have Account",
+                            style: TextStyle(
+                              decoration: TextDecoration.underline,
+                              color: greenColor,
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),

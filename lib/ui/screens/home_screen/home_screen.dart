@@ -6,6 +6,7 @@ import 'package:mvvm/core/constants/string.dart';
 import 'package:mvvm/core/constants/text_style.dart';
 import 'package:mvvm/ui/buttons/buttons.dart';
 import 'package:mvvm/ui/screens/home_screen/home_view_model.dart';
+import 'package:mvvm/ui/screens/root%20_screen/root_screen.dart';
 
 import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
@@ -59,6 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
               10,
               (index) => ListTile(
                 leading: CircleAvatar(
+                  backgroundColor: lightBlack,
                   radius: 20,
                   child: Image.asset("$iconsAssets/email.png", height: 20),
                 ),

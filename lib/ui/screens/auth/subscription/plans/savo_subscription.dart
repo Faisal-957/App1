@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/route_manager.dart';
 import 'package:mvvm/core/constants/colors.dart';
 import 'package:mvvm/core/constants/string.dart';
 import 'package:mvvm/core/constants/text_style.dart';
 import 'package:mvvm/ui/custom_widget/buttons/buttons.dart';
+
 import 'package:mvvm/ui/screens/auth/subscription/plans/subscription_viewmodel.dart';
+import 'package:mvvm/ui/screens/select%20Intrest/Select_Intrest.dart';
 import 'package:provider/provider.dart';
 
 class SavoSubscription extends StatelessWidget {
@@ -76,7 +80,9 @@ class SavoSubscription extends StatelessWidget {
                 ),
                 30.verticalSpace,
                 CustomButton(
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(Selectintrest());
+                  },
                   boxColor: greenColor,
                   text: "Choose Your Plan",
                 ),

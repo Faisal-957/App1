@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:mvvm/core/constants/colors.dart';
 import 'package:mvvm/core/constants/text_style.dart';
 import 'package:mvvm/ui/custom_widget/buttons/Custom_onbording.dart';
-import 'package:mvvm/ui/screens/auth/creat_account_screen/creataccount_screen.dart';
 import 'package:mvvm/ui/screens/auth/onbord_screen/onbording_viewmodel.dart';
+import 'package:mvvm/ui/screens/auth/subscription/plans/savo_subscription.dart';
 
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -43,7 +43,7 @@ class OnbaordingScreen extends StatelessWidget {
                       ),
                       child: TextButton(
                         onPressed: () {
-                          Get.to(() => LoginScreen());
+                          Get.to(SavoSubscription());
                         },
                         child: Text(
                           "Skip",

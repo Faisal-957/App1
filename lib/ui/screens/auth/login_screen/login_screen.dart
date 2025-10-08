@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:mvvm/core/constants/auth_field_decoration.dart';
 import 'package:mvvm/core/constants/colors.dart';
 import 'package:mvvm/core/constants/string.dart';
 import 'package:mvvm/core/constants/text_style.dart';
 import 'package:mvvm/ui/custom_widget/buttons/buttons.dart';
 import 'package:mvvm/ui/custom_widget/buttons/social_button.dart';
+import 'package:mvvm/ui/screens/auth/creat_account_screen/creataccount_screen.dart';
 import 'package:mvvm/ui/screens/auth/creat_account_screen/lcreataccount_viewmodel.dart';
+import 'package:mvvm/ui/screens/auth/forgot_password/forgotpassword.dart';
+import 'package:mvvm/ui/screens/auth/onbord_screen/onbording_screen.dart';
 import 'package:provider/provider.dart';
 
 // ignore: use_key_in_widget_constructors
@@ -32,7 +36,10 @@ class LoginScreen1 extends StatelessWidget {
                   Image.asset("$staticAssets/app_logo.png", scale: 6),
                   30.verticalSpace,
                   Text("Welcome Back", style: style30),
-                  Text("Login to Continue!", style: style24),
+                  Text(
+                    "Login to Continue!",
+                    style: style16.copyWith(color: greyColor),
+                  ),
                   50.verticalSpace,
                   TextFormField(
                     style: style16,
@@ -80,21 +87,41 @@ class LoginScreen1 extends StatelessWidget {
                       ),
                     ),
                   ),
-                  30.verticalSpace,
+                  20.verticalSpace,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(Forgotpassword());
+                        },
+                        child: Text(
+                          "Forgot Password?",
+                          style: style12.copyWith(color: greenColor),
+                        ),
+                      ),
+                    ],
+                  ),
+                  100.verticalSpace,
 
                   ///
                   /// Custom Button
                   ///
                   CustomButton(
                     text: "Log In",
-                    onTap: () {},
-                    boxColor: Colors.black,
+                    onTap: () {
+                      Get.to(OnbaordingScreen());
+                    },
+                    boxColor: greenColor,
                     textColor: whiteColor,
                   ),
                   30.verticalSpace,
                   CustomButton(
                     text: "Create New Account",
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(LoginScreen());
+                    },
                     boxColor: Colors.black,
                     textColor: greenColor,
                   ),

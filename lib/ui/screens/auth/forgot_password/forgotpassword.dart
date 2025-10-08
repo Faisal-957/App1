@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:mvvm/core/constants/auth_field_decoration.dart';
 import 'package:mvvm/core/constants/colors.dart';
 import 'package:mvvm/core/constants/string.dart';
 import 'package:mvvm/core/constants/text_style.dart';
 import 'package:mvvm/ui/custom_widget/buttons/buttons.dart';
+import 'package:mvvm/ui/screens/auth/otp_verification/otp_verification.dart';
 
 class Forgotpassword extends StatelessWidget {
   const Forgotpassword({super.key});
@@ -47,9 +49,11 @@ class Forgotpassword extends StatelessWidget {
             30.verticalSpace,
             CustomButton(
               text: "Send OTP",
-              onTap: () {},
-              boxColor: Colors.black,
-              textColor: greenColor,
+              onTap: () {
+                Get.to(OtpVerification());
+              },
+              boxColor: greenColor,
+              textColor: whiteColor,
             ),
           ],
         ),

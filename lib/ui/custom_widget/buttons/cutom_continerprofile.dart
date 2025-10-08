@@ -1,7 +1,9 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mvvm/core/constants/colors.dart';
 import 'package:mvvm/core/constants/text_style.dart';
 
+//================ box====================
 class CustomContinerprofile extends StatelessWidget {
   final String numbr;
   final String text;
@@ -32,6 +34,7 @@ class CustomContinerprofile extends StatelessWidget {
   }
 }
 
+//================ vedio box ==================================
 class Customprofile2 extends StatelessWidget {
   final String img;
   final String title;
@@ -54,6 +57,28 @@ class Customprofile2 extends StatelessWidget {
         Text(title, style: style12),
         Text(subtitle, style: style12.copyWith(color: greyColor)),
       ],
+    );
+  }
+}
+//================tilelist=============
+
+class Tilelsit extends StatelessWidget {
+  final String imgh;
+  final String text;
+
+  const Tilelsit({super.key, required this.imgh, required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Container(
+        height: 40.w,
+        width: 40.w,
+        decoration: BoxDecoration(color: lightBlack, shape: BoxShape.circle),
+
+        child: Image.asset(imgh, scale: 4),
+      ),
+      title: Text(text, style: style16),
     );
   }
 }

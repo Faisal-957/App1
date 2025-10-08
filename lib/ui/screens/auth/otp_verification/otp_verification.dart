@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:mvvm/core/constants/colors.dart';
 import 'package:mvvm/core/constants/string.dart';
 import 'package:mvvm/core/constants/text_style.dart';
 import 'package:mvvm/ui/custom_widget/buttons/buttons.dart';
+import 'package:mvvm/ui/screens/auth/onbord_screen/onbording_screen.dart';
 import 'package:pinput/pinput.dart';
 
 class OtpVerification extends StatelessWidget {
@@ -68,7 +70,9 @@ class OtpVerification extends StatelessWidget {
             30.verticalSpace,
             CustomButton(
               text: "Verify",
-              onTap: () {},
+              onTap: () {
+                Get.to(OnbaordingScreen());
+              },
               boxColor: greenColor,
               textColor: whiteColor,
             ),
